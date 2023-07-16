@@ -1,0 +1,432 @@
+#!name = 主用应用去广告
+#!desc = 油管知乎小红书微博高德
+
+
+[General]
+# ✅网易云音乐
+force-http-engine-hosts = %APPEND% 59.111.*:0, iadmusicmatvideo.music.126.net
+
+# ✅喜马拉雅
+# DNS劫持
+hijack-dns = %APPEND% 114.114.114.114
+
+# ✅爱奇艺 嘀嗒拼车
+force-http-engine-hosts = %APPEND% t7z.cupid.iqiyi.com,kjp.cupid.iqiyi.com,*.didapinche.com
+
+
+
+##################################################################################################
+[URL Rewrite]
+# ✅网易云音乐
+^https?:\/\/httpdns.n.netease.com\/ - reject
+
+# ✅什么值得买
+# 什么值得买_好价详情页去广告
+^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/other_modul - reject
+# 什么值得买_好价详情页红包小助手
+^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul - reject
+# 什么值得买_Wiki(618晒物活动推广，将来可能不是广告)
+^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/wiki_related_modul - reject
+
+# ✅高德地图
+# 通用广告请求
+^https?:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution - reject
+
+# ✅小红书
+# 通用广告请求
+^https?:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution - reject
+
+# ✅I百度网盘广告
+^https?:\/\/pan\.baidu\.com\/(act\/(api\/activityentry|v2\/(bchannel|welfare)\/list)|rest\/2\.0\/pcs\/ad) - reject
+
+# ✅I中国移动开屏
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/(init\/startInit|emotionMarket) - reject
+
+
+##################################################################################################
+[Rule]
+# ✅网易云音乐
+DOMAIN,iadmusicmat.music.126.net,REJECT-NO-DROP
+DOMAIN,iadmat.nosdn.127.net,REJECT-NO-DROP
+DOMAIN,iadmatapk.nosdn.127.net,REJECT-NO-DROP
+DOMAIN,httpdns.n.netease.com,REJECT-NO-DROP
+DOMAIN,gdt.qq.com,REJECT-NO-DROP
+DOMAIN-SUFFIX,163jiasu.com,REJECT-NO-DROP
+
+# ✅微博
+# > 微博其它
+URL-REGEX,^https?:\/\/.+\/wbts\.png$,REJECT
+URL-REGEX,^https?:\/\/.+\/licai\.png$,REJECT
+URL-REGEX,^https?:\/\/.+\/3fc\.png$,REJECT
+URL-REGEX,^https?:\/\/.+\/pull-flv-(.*)\.douyincdn\.com\/stage\/.+\.flv,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/upload\/.+\/NavigationBar_Video_Icon_Live_Normal\.png$,REJECT
+URL-REGEX,^https?:\/\/.+\.sinaimg\.cn\/.+\/(.*)?(fish|redicon|redpacket)(.*)?\.(png|jpg|jpeg|gif)$,REJECT
+URL-REGEX,^https?:\/\/.+\.sinaimg\.cn\/.+\/lipin_dongtu\.gif$,REJECT
+# URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/upload\/1071\/1468\/.+\/.+\.gif$,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter\/js\/vendor\.+\.js$,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter\/js\/app\.+\.js$,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter\/js\/0\.+\.js$,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter\/js\/index\.lazy\.+\.js$,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter\/js\/app\.+\.js$,REJECT
+URL-REGEX,^https?:\/\/h5\.sinaimg\.cn\/m\/taskcenter\/js\/vendor\.+\.js$,REJECT
+URL-REGEX,^https?:\/\/captcha\.weibo\.com\/static\/js\/jigsawLock\.min\.js$,REJECT
+URL-REGEX,^https?:\/\/wx[0-9]\.sinaimg\.cn\/large\/.+\.gif$,REJECT
+
+# ✅知乎
+# 拦截开屏广告
+URL-REGEX,^https?:\/\/api\.zhihu\.com\/commercial_api\/launch_v2\?,REJECT
+URL-REGEX,^https?:\/\/api\.zhihu\.com\/commercial_api\/real_time_launch_v2\?,REJECT
+# 拦截品牌提问广告
+URL-REGEX,^https?:\/\/api\.zhihu\.com\/brand\/question\/\d+/card\?,REJECT
+URL-REGEX,^https?:\/\/www\.zhihu\.com\/api\/v\d+\/brand\/question/\d+/card\?,REJECT
+# 其他拦截不影响使用的域名
+DOMAIN,mqtt.zhihu.com,REJECT
+DOMAIN,sugar.zhihu.com,REJECT
+DOMAIN,crash2.zhihu.com,REJECT
+DOMAIN,appcloud.zhihu.com,REJECT
+DOMAIN,appcloud2.in.zhihu.com,REJECT
+
+# ✅百度贴吧
+RULE-SET,https://raw.githubusercontent.com/app2smile/rules/master/rule/tieba-ad.list,REJECT-DROP
+
+# ✅喜马拉雅
+# 阻止IP变化
+DOMAIN,gslbali.ximalaya.com,REJECT
+DOMAIN,gslbtx.ximalaya.com,REJECT
+# 修复轮播Ad失效
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/discovery-feed\/focus\/queryF,REJECT
+# 屏蔽播放页Live
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/mobile-playpage\/view\/,REJECT
+# MyInfo红点提醒
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/chaos-notice-web\/v1\/message\/preview\/list,REJECT
+# 屏蔽大红包Tips
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/social-web\/bottomTabs\/dynamicEntrance\/status,REJECT
+# 屏蔽gif弹窗_Ad
+URL-REGEX,^https?:\/\/.*\.xmcdn\.com\/\w{8}\/\w{4}-\w{16}\/.+gif$,REJECT
+# 屏蔽Aged请求
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/(dog-portal\/checkOld|(child-mobile\/child|aged-mobile\/aged)\/mode\/query),REJECT
+# 部分Tab弹窗
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/discovery-feed\/isShowUserGiftPendant,REJECT
+# 屏蔽红点提示
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/mobile-user\/unread,REJECT
+# 屏蔽minor请求
+URL-REGEX,^https?:\/\/.*\.xima.*\.com/mobile-user/minorProtection/pop,REJECT
+# 屏蔽隐私搜集
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/collector/xl\/v\d,REJECT
+# 屏蔽版本更新
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/butler-portal\/versionCheck,REJECT
+# 屏蔽开屏广告
+URL-REGEX,^https?:\/\/(adse\.wsa|adse|adbehavior|xdcs-collector)\.xima.*\.com\/.*,REJECT
+# 屏蔽位置请求
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/mobile\/discovery\/v\d\/location,REJECT
+# 屏蔽热搜词
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/hotWord,REJECT
+# 屏蔽搜索框定时_Ad
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/guideWord,REJECT
+# 屏蔽实时_Ad请求
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime,REJECT
+# 屏蔽ting_Ad
+URL-REGEX,^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)?,REJECT
+
+# ✅IT之家
+URL-REGEX,^https:\/\/api\.zuihuimai\.com,REJECT
+
+# > 顺丰速运 去开屏
+URL-REGEX,^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/appVersion\/detectionUpgrade,REJECT
+URL-REGEX,^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/,REJECT
+URL-REGEX,^https?:\/\/shopic\.sf-express\.com\/crm\/mobile\/common\/flashscreen,REJECT
+# > 拼多多 去开屏
+URL-REGEX,^https?:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash,REJECT
+# > 美团 去广告
+URL-REGEX,^https:\/\/flowplus\.meituan\.net\/v1\/mss_\w+\/linglong\/\d+\.jpg$,REJECT
+URL-REGEX,^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(brandcpt-vedio|waimai-alita)\/\w+\.zip$,REJECT
+# > 滴滴出行 去广告
+//01 安全提示横幅
+URL-REGEX,^https:\/\/guard\.sec\.xiaojukeji\.com\/api\/guard\/psg\/v2\/getShieldStatus,REJECT
+//02 底部打车&代价推荐
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/one,REJECT
+//03 福利专区-金融服务-公交-骑车-滴滴乐园
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/nav\/widget,REJECT
+//04 接送机-优惠商城
+URL-REGEX,^https:\/\/api\.udache\.com\/gulfstream,REJECT
+//05 主页 领任务
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/api\/(component|fusion|dynamicmodule|usercenter),REJECT
+URL-REGEX,^https:\/\/conf\.diditaxi\.com\.cn\/dynamic,REJECT
+//06 主页 非主流式悬浮挂件
+URL-REGEX,^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget,REJECT
+//07 商城
+URL-REGEX,^https:\/\/shop-gw\.chengxinyouxuan\.com\/(route|indexConfig|apolloConfig|getShopTuanInfos),REJECT
+//08 开屏广告
+URL-REGEX,^https:\/\/img-ys011\.didistatic\.com\/static,REJECT
+//09 骑行
+URL-REGEX,^https:\/\/pt-starimg\.didistatic\.com\/static,REJECT
+# > 交管12123 去广告
+URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$,REJECT
+# > 腾讯视频 去开屏
+OR,((DOMAIN,pgdt.gtimg.cn), (AND,((USER-AGENT,live4iphoneRel*), (IP-CIDR,0.0.0.0/0,no-resolve)))),REJECT-DROP
+# > 爱奇艺 去广告
+DOMAIN-SUFFIX,cupid.iqiyi.com,REJECT
+# > 优酷 去广告
+DOMAIN, iyes.youku.com,REJECT
+URL-REGEX,^http:\/\/.*\.cp31\.ott\.cibntv\.net\/youku\/,REJECT-TINYGIF
+# > 京东 去广告
+URL-REGEX,^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start$,REJECT-TINYGIF
+# > 京东极速版 去广告
+URL-REGEX,https://api.m.jd.com/client.action\?functionId=lite_advertising,REJECT
+# > 京东金融 去广告
+URL-REGEX,^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/getLoadingPicture,REJECT
+
+
+##################################################################################################
+[Map Local]
+# ✅youtube
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data="https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/blank.txt" header="Content-Type: application/vnd.yt-ump"
+
+# ✅网易云音乐
+^http:\/\/iadmusicmatvideo\.music\.126\.net data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank.mp4"
+^https?:\/\/interface3?\.music\.163\.com\/eapi\/(community\/friends\/fans-group\/artist\/group\/get|user\/sub\/artist|music\/songshare\/text\/recommend\/get|mine\/applet\/redpoint|resniche\/position\/play\/new\/get) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank_dict.json"
+# (评论区｜评论右上角热评馆｜播放页评论)｜回复
+^https?:\/\/interface3?\.music\.163.com\/eapi\/(comment\/(feed\/inserted|hotcomment\/collect|tips\/v2\/get)|v\d\/content\/exposure\/comment\/banner) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank_dict.json"
+# 播放页live或直播｜(首页免或vip图标｜小提示)
+^https?:\/\/interface3?\.music\.163.com\/eapi\/(mlivestream\/entrance\/playpage|link\/(position\/show\/(strategy|resource)|scene\/show)) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank_dict.json"
+# 黑胶弹窗｜会员试用
+^https?:\/\/interface3?\.music\.163.com\/eapi\/(ad|vipcenter\/tspopup\/get|vipauth\/app\/auth|music-vip-membership\/client\/vip\/info|zone\/songplay\/entry\/get) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank_dict.json"
+# 搜索页热搜卡片｜猜你喜欢｜我的应用下方提醒
+^https?:\/\/interface3?\.music\.163.com\/w?e?api\/(search\/(chart|default|rcmd\/keyword|specialkeyword)|(resource-exposure\/|middle\/clientcfg\/config)|activity\/bonus\/playpage\/time\/query) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank_dict.json"
+# 侧边栏
+^https?:\/\/interface3?\.music\.163\.com\/eapi\/(side-bar\/mini-program\/music-service\/account|delivery\/batch-deliver) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/blank_dict.json"
+[Header Rewrite]
+#摸鱼你偷呀(
+#^https?:\/\/interface3?\.music\.163\.com\/eapi\/(batch|ad) header-replace-regex cookie os=iPhone\sOS os=osx
+#^https?:\/\/interface3?\.music\.163\.com\/eapi\/(batch|ad) header-replace user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) NeteaseMusicDesktop/2.3.14.999"
+^https?:\/\/interface3?\.music\.163\.com\/eapi\/batch header-replace-regex cookie appver=.+$ appver=2333
+
+# ✅微博
+# > 微博
+^https?:\/\/h5\.sinaimg\.cn\/upload\/.+\/fhy_dongtu\.gif$ data="https://hub.nange.cn/Mock/Weibo/hy_dongtu.gif"
+^https?:\/\/h5\.sinaimg\.cn\/upload\/.+\/bianjijiantou\.png$ data="https://hub.nange.cn/Mock/Weibo/jiantougaocheng.png"
+^https?:\/\/h5\.sinaimg\.cn\/upload\/.+\/Vip\.png$ data="https://hub.nange.cn/Mock/Weibo/avatar_vip_golden.png"
+^https?:\/\/h5\.sinaimg\.cn\/upload\/.+\/vip[0-9]_default\.png$ data="https://hub.nange.cn/Mock/Weibo/feed_icon_100vip_7_default.png"
+# > 微博积分弹窗
+^https?:\/\/luck\.sc\.weibo\.com\/aj\/Action\/indexInfo$ data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 会员中心弹窗
+^https?:\/\/new\.vip\.weibo\.c(n|om)\/aj\/vipcenter\/popalert data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/new\.vip\.weibo\.c(n|om)\/aj\/vipcenter\/userdata data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 微博推荐
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/statuses\/unread_hot_timeline\?gsid= data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 获取设备型号
+^https?:\/\/m?api\.weibo\.c(n|om)\/device\/get data="https://hub.nange.cn/Mock/Weibo/getDevice.json"
+# > 微博发现
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/search\/container_discover\?gsid= data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 微博话题按钮红点
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/!\/huati\/discovery_home_bottom_getdotinfo data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 微博超话看帖
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/!\/huati\/discovery_home_bottom_channel_list data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/statuses\/unread_topic_timeline data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/statuses\/container_timeline_topic data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 微博网络检测
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/carrier\/get\/info data="https://hub.nange.cn/Mock/Weibo/carrier.json"
+# > 微博订单
+^https?:\/\/shop\.sc\.weibo\.com\/aj\/h5\/order\/prolist data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 微博视频推荐
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/video\/redpacket data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/video\/community_tab data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/!\/multimedia\/playback\/batch_get data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/!\/multimedia\/video\/comments\/get_comments_order_by_hot data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/video\/tiny_stream_channel_list data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/video\/tiny_stream_video_list data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+# > 微博其它
+^https?:\/\/letsgo\.e\.weibo\.com\/stracker\/fe\/report data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/!\/multimedia\/video\/red_package\/grow_follower\/active_uids data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/client\/tabbar data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/push\/daily data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/page\/get_fragment data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/push\/active data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m\.weibo\.cn\/c\/checkin data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/video\/machine data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/fastimage\.uve\.weibo\.com\/interface\/sdk\/getad\.php$ data="https://hub.nange.cn/Mock/Weibo/fastimage.json"
+^https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/actionpro\.php data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/sdkclick\.uve\.weibo\.com\/interface\/sdk\/sdkclick\.php data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkconfig\.php data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+^https?:\/\/m?api\.weibo\.c(n|om)\/2\/hot\/repost_daily data="https://hub.nange.cn/Mock/Blank/Blank_Dict.json"
+
+# ✅知乎
+^https?:\/\/118\.89\.204\.198 data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+^https?:\/\/103\.41\.167\.237 data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+^https?:\/\/2402:4e00:1200:ed00:0:9089:6dac:96b6 data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 屏蔽下发的配置，如皮肤等
+^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json" header="Content-Type: application/x-protobuf"
+# 屏蔽我的页面开通会员的卡片
+# ^https?:\/\/api\.zhihu\.com\/unlimited\/go\/my_card data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 去除底部标签页关注人角标
+^https?:\/\/api\.zhihu\.com\/moments\/tab_v2 data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 去除消息通知角标
+^https?:\/\/api\.zhihu\.com\/(notifications\/v\d\/count) data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 拦截回答下的卡片广告
+^https?:\/\/www\.zhihu\.com\/api\/v\d\/answers\/\d+\/recommendations data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 拦截应用内弹窗
+^https?:\/\/api\.zhihu\.com\/me\/guides data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 去除关注页最常访问
+^https?:\/\/api\.zhihu\.com\/moments\/recent data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 拦截推荐页顶部广告
+^https?:\/\/api\.zhihu\.com\/api\/v4\/ecom_data\/config data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 底栏加号的广告
+^https?:\/\/api\.zhihu\.com\/content-distribution-core\/bubble\/common\/settings data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 推荐页搜索栏左侧图标
+^https?:\/\/api\.zhihu\.com\/feed\/render\/revisit\/current_reading data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 疑似推荐页内容更新红点
+^https?:\/\/api\.zhihu\.com\/feed\/render\/revisit\/tag_config data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 去除回答页的相关搜索
+^https?:\/\/www\.zhihu\.com\/api\/v\d+\/search\/related_queries\/answer data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+# 暂不清楚作用
+^https?:\/\/api\.zhihu\.com\/commercial_api\/banners_v3\/app_topstory_banner data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+^https?:\/\/api\.zhihu\.com\/ad-style-service\/request data="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/blank/blank_dict.json"
+
+# ✅高德地图
+# 搜索框 | 左下天气
+^https?:\/\/m5\.amap\.com\/ws\/(shield\/scene\/recommend|valueadded\/weather) data="https://raw.githubusercontent.com/kokoryh/Script/master/data/blank_dict.json"
+# Tip请求，如招聘代驾的广告等
+^https?:\/\/m5-zb\.amap\.com\/ws\/boss\/order_web\/\w{8}_information data="https://raw.githubusercontent.com/kokoryh/Script/master/data/blank.txt"
+
+# ✅小红书
+# 搜索框 | 左下天气
+^https?:\/\/m5\.amap\.com\/ws\/(shield\/scene\/recommend|valueadded\/weather) data="https://raw.githubusercontent.com/kokoryh/Script/master/data/blank_dict.json"
+# Tip请求，如招聘代驾的广告等
+^https?:\/\/m5-zb\.amap\.com\/ws\/boss\/order_web\/\w{8}_information data="https://raw.githubusercontent.com/kokoryh/Script/master/data/blank.txt"s
+
+# ✅菜鸟裹裹
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.(nbmensa\.research\.researchservice\.consultmerge|adx\.flyad\.getad) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.longquan\.place\.getpageresourcecontent\.cn\/\d\. data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.(guoguo\.nbnetflow\.ads\.index\.cn\/\d\.|adkeyword\.get\.cn\/1\d\.|nbmensa\.research\.researchservice\.(acquire|event|close)\.cn\/\d\.) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+
+
+##################################################################################################
+[Script]
+
+# ✅YouTube
+# 该插件已足够全面，无需其他规则混用，防止复写规则被破坏。
+http-response ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting)\? script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/YouTube/YouTube_remove_ads.js, requires-body = true, binary-body-mode = true, tag = YouTube去视频贴片广告
+
+# ✅微博
+# > 微博个人信息
+主页 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/2\/profile\?gsid=,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Spec/Weibo/Moore/Profile.js
+个人信息 = type=http-response,pattern=^https?:\/\/api\.weibo\.cn\/2\/users\/(show|relation),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Spec/Weibo/Moore/UserShow.js
+# > 微博去广告
+微博 = type=http-response,pattern=^https?://m?api\.weibo\.c(n|om)/2/(profile/(me|statuses)|searchall|statuses/(unread_hot_timeline|extend|video_mixtimeline)|video/(community_tab|remind_info|tiny_stream_video_list)|checkin/show|container/get_item),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Spec/Weibo/Moore/Weibo.js
+开屏 = requires-body=1,script-path=https://hub.nange.cn/Script/Weibo/Launch.js,type=http-response,pattern=^https?:\/\/(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua)
+微博信息流 = type=http-response,requires-body=1,max-size=-1,pattern=^https?:\/\/m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)(mix)?timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|cardlist|page|!/(photos/pic_recommend_status|live/media_homelist|wbox\/.+\/createrIndex|st_videos\/tiny\/effect\/shoot_display_config)|video/tiny_stream_video_list|photo/info|remind/unread_count|search/finder|search/container_timeline|!\/huati\/discovery_home_bottom_channel_list|statuses\/unread_topic_timeline),script-path=https://hub.nange.cn/Script/Weibo/Timeline.js
+微博钱包订单 = type=http-response,pattern=(^https?:\/\/js\.t\.sinajs\.cn\/c2p\/sam\/frontend\/assets\/walletcache\.json|^https?:\/\/pay\.sc\.weibo\.com\/api\/client\/sdk\/app\/indexnew\/(index|person)|^https?:\/\/shop\.sc\.weibo\.com\/aj\/h5\/order\/center),requires-body=1,max-size=0,script-path=https://hub.nange.cn/Script/Weibo/Wallet.js
+# > 微博配置注入
+微博去广告配置注入 = type=cron,cronexp="0 0 1 ? * MON",debug=1,script-path=https://hub.nange.cn/Script/Weibo/Config.js
+
+# ✅知乎
+# 获取用户信息 - 隔离用户数据，开启本地会员等
+哲也_处理用户信息 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/people\/,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 关键词屏蔽 - 解锁本地的关键词屏蔽功能，需要开启本地VIP
+哲也_解锁关键词屏蔽 = type=http-request,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/feed-root\/block,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 优化软件配置 - 优化下发的配置文件来实现某些效果
+哲也_优化软件配置1 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/m-cloud\.zhihu\.com\/api\/cloud\/config\/all\?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+哲也_优化软件配置2 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/appcloud2\.zhihu\.com\/v\d+\/config,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 用户信息 - 修改用户盐值
+修改用户盐值 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/user-credit\/basis,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 关注页 - 内容优化及屏蔽转发的黑名单用户想法
+哲也_关注列表优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/moments_v3\?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 推荐页 - 移除黑名单用户发布的文章、去除广告，及自定义一些屏蔽项目
+哲也_推荐页优化 = type=http-response,requires-body=1,max-size=0,pattern=^https:\/\/api\.zhihu\.com\/topstory\/recommend,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 黑名单页 - 同步黑名单数据
+哲也_同步黑名单 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/settings\/blocked_users,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 问题的回答列表 - 移除黑名单用户的回答、去除广告
+哲也_回答列表优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 回答信息流 - 移除黑名单用户的回答、去除广告
+哲也_回答信息流优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/next-data,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 回答页底部评论摘要 - 移除黑名单用户发表的评论
+哲也_评论摘要优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/www\.zhihu\.com\/api\/v4\/comment_v5\/answers\/\d+\/abstract_comment\?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 评论页及子页面 - 去除黑名单用户发表的评论
+哲也_评论优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/(comment_v5\/)?(answers|comments?|articles|pins)\/\d+\/(root_|child_)?comments?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 消息页 - 折叠官方消息、屏蔽营销消息
+哲也_消息优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/notifications\/v3\/(message|timeline\/entry\/system_message),script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 回答页 - 内容优化，付费、营销、推广内容文首提醒
+哲也_回答内容优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/www\.zhihu\.com\/appview\/v2\/answer\/.*(entry=(?!(preload-topstory|preload-search|preload-subscription)))?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 回答页 - 屏蔽下翻出现的黑名单用户的回答
+哲也_回答翻页优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/next\?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 文章页 - 去除底部广告
+哲也_文章优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/www\.zhihu\.com\/api\/v\d\/articles\/\d+\/recommendation\?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 热榜页 - 去除广告
+哲也_热榜优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/hot-lists(\?|\/),script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+# 搜索页 - 去除预置广告
+哲也_预置关键词优化 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.zhihu\.com\/search\/preset_words\?,script-path=https://gist.githubusercontent.com/blackmatrix7/f5f780d0f56b319b6ad9848fd080bb18/raw/zheye.min.js
+
+# ✅什么值得买
+什么值得买_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/app-api\.smzdm\.com\/util\/loading,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_首页去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/homepage-api\.smzdm\.com\/v3\/home,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_好价去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/haojia-api\.smzdm\.com\/home\/list,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_好价详情页去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/article_releated_modul,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_百科去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/baike-api\.smzdm\.com\/home_v3\/list,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_搜索结果去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/s-api\.smzdm\.com\/sou\/list_v10,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_搜索标签去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/s-api\.smzdm\.com\/sou\/filter\/tags\/hot_tags,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+什么值得买_值会员权益中心banner去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/zhiyou\.m\.smzdm\.com\/user\/vip\/ajax_get_banner,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+
+# ✅百度贴吧
+贴吧净化 = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(tiebaads\/commonbatch|c\/s\/sync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js,script-update-interval=0
+贴吧Proto = type=http-response,pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized),requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js,script-update-interval=0
+
+# ✅高德地图
+# 这条必须屏蔽，否则模块无效
+http-response ^http:\/\/amdc\.m\.taobao\.com requires-body=0,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/self_use.js
+# 搜索框热词 | 附近页面 | 我的页面 | 首页右中
+http-response ^https?:\/\/m5\.amap\.com\/ws\/shield\/(search\/(new_hotword|nearbyrec_smart)|dsp\/profile\/index\/nodefaas|frogserver\/aocs\/updatable) requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+# 开屏广告 | 首页底部 | 底栏角标
+http-response ^https?:\/\/m5\.amap\.com\/ws\/(valueadded\/alimama\/splash_screen|faas\/amap-navigation\/main-page|message\/notice\/list) requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+# 打车页面
+http-response ^https?:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+# 首页顶部横幅
+http-response ^https?:\/\/sns\.amap\.com\/ws\/msgbox\/pull requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+
+# ✅喜马拉雅
+# 首页滚动_Ad、Tab页滚动_Ad、我的页面_Ad
+喜马拉雅 = type=http-response,pattern=^https?:\/\/mobile\.ximalaya\.com\/focus-mobile|(discovery-category|mobile-user)\/v\d\/(mix|category|homePage),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/xmly_json.js,script-update-interval=0
+
+# ✅小红书
+# 启动/开屏广告 | 首页瀑布流 | 去除购物 | 热搜发现 | 默认填词 | 猜你想搜
+http-response ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/(system_service\/(splash_)?config|homefeed(\?|\/categories)|search\/(hot_list|hint|trending)
+# > 小红书_热搜发现@ddgksf2013
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/hot_list url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/redbook_json.js
+# > 小红书_默认填词@ddgksf2013
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/hint url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/redbook_json.js
+# > 小红书_猜你想搜@ddgksf2013
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/trending url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/redbook_json.js
+# 搜索框热词 | 附近页面 | 我的页面 | 首页右中
+http-response ^https?:\/\/m5\.amap\.com\/ws\/shield\/(search\/(new_hotword|nearbyrec_smart)|dsp\/profile\/index\/nodefaas|frogserver\/aocs\/updatable) requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+# 开屏广告 | 首页底部 | 底栏角标
+http-response ^https?:\/\/m5\.amap\.com\/ws\/(valueadded\/alimama\/splash_screen|faas\/amap-navigation\/main-page|message\/notice\/list) requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+# 打车页面
+http-response ^https?:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+# 首页顶部横幅
+http-response ^https?:\/\/sns\.amap\.com\/ws\/msgbox\/pull requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/amap.js
+
+# ✅菜鸟裹裹
+菜鸟tb = type=http-response,pattern=^https?:\/\/(cn-acs\.m\.cainiao|guide-acs\.m\.taobao)\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show,requires-body=1,max-size=0,script-update-interval=-1,script-path=https://raw.githubusercontent.com/Keywos/rule/main/JS/cainiao.js
+菜鸟cn = type=http-response,pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(homepage\.merge|pickup\.empty\.page|protocol\.homepage)\.get\.cn,requires-body=1,max-size=0,script-update-interval=-1,script-path=https://raw.githubusercontent.com/Keywos/rule/main/JS/cainiao.js
+
+# ✅IT之家
+ＩＴ之家 = type=http-response,requires-body=1,max-size=0,pattern=^https:\/\/(napi|api|m)\.ithome\.com\/(api|json)\/(news|topmenu|listpage|newslist|slide)\/(getfeeds|index|slide),script-path=https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/ithome/ithome.ad.js,script-update-interval=0
+
+# ✅爱奇艺
+爱奇艺_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/(t7z|kjp)\.cupid\.iqiyi\.com\/mixer\?,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+# ✅嘀嗒出行
+嘀嗒出行_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/capis(-?\w*)?\.didapinche\.com\/ad\/cx\/startup\?,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+# ✅美团外卖
+美团外卖_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/loadInfo?,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+# ✅京东
+京东_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=start,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+# ✅多点
+多点_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/cmsapi\.dmall\.com\/app\/home\/homepageStartUpPic,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.js
+
+[MITM]
+hostname = %APPEND% *.googlevideo.com, youtubei.googleapis.com, 111.*, 112.13.119.52, 117.147.199.59, interface*.music.163.com:0, httpdns.n.netease.com, *.163jiasu.com, *.uve.weibo.com, *api.weibo.cn, *api.weibo.com, h5.sinaimg.cn, new.vip.weibo.cn, *.sc.weibo.com, captcha.weibo.com, wx*.sinaimg.cn, js.t.sinajs.cn, *.e.weibo.com, 118.89.204.198,103.41.167.237,2402:4e00:1200:ed00:0:9089:6dac:96b6,www.zhihu.com,api.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,m-cloud.zhihu.com,103.41.167.236,103.41.167.234,103.41.167.235,103.41.167.226, app-api.smzdm.com,homepage-api.smzdm.com,haojia-api.smzdm.com,haojia.m.smzdm.com,baike-api.smzdm.com,s-api.smzdm.com,zhiyou.m.smzdm.com, tiebac.baidu.com, m5*.amap.com, sns.amap.com, *.xima*.*, *.xmcdn.*, edith.xiaohongshu.com, www.xiaohongshu.com, cn-acs.m.cainiao.com, guide-acs.m.taobao.com, m.ithome.com, api.ithome.com, api.zuihuimai.com, napi.ithome.com, t7z.cupid.iqiyi.com, kjp.cupid.iqiyi.com, capis.didapinche.com, capis*.didapinche.com, wmapi.meituan.com, api.m.jd.com, cmsapi.dmall.com, pan.baidu.com, client.app.coc.10086.cn, 

@@ -1,0 +1,68 @@
+#!name=应用软件Vip
+#!desc=主用软件Vip破解
+
+
+[URL Rewrite]
+# ✅彩云天气广告
+^https:\/\/ad\.caiyunapp\.com - reject
+# ✅酷我音乐_AdBlock
+# 酷我音乐_AdBlock
+^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+ - reject
+# 酷我音乐_AdBlock
+^https?:\/\/.+\.kwcdn\.kuwo\.cn\/star\/upload\/.+ - reject
+# 酷我音乐_AdBlock
+^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/Ad - reject
+# 酷我听书_Blockad
+https?:\/\/audiobookpay\.kuwo\.cn/a\.p\?op=get_advertright - reject-dict
+# 酷我听书_Blockad
+https?:\/\/omp-audiobookpay\.lrts\.me\/a\.p\?op=get_advertright - reject-dict
+# 酷我音乐_添加已购音乐
+^https?:\/\/.*\.kuwo\.cn\/music\.pay\?uid\=\d+ http://musicpay.kuwo.cn/music.pay?uid=2 302
+
+
+[Script]
+# ✅ Spotify
+spotify-json = type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
+# ✅ 酷我音乐
+酷我音乐=type=http-response,pattern=^https?:\/\/.*\.(kuwo|lrts)\.(cn|me)\/(a\.p|music\.pay|(vip\/(v2|enc)\/(theme|user\/vip))|(EcomResource|(Mobile)?Ad)Serv(er|ice)).*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/nameking77/Qx/main/rewrite/kw.js,script-update-interval=0
+# ✅ WPS
+WPS = type=http-response,pattern=^https?:\/\/(vas|account|drive)\.wps\.cn\/(query\/api\/.+\/list_purchase_info|api\/(v\d\/spaces|users\/.+\/overview)),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/WPS.js
+# ✅ Nicegram
+Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\w+$,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/I-am-R-E/Functional-Store-Hub/Master/Nicegram/Script/Nicegram.js,script-update-interval=0
+# ✅ 彩云天气
+彩云天气 = type=http-response,pattern=^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/caiyun.js
+# ✅ Picsew
+Picsew = type=http-response,pattern=^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/Picsew.js
+# ✅ 有道词典
+有道词典 = type=http-response,pattern=^https:\/\/dict\.youdao\.com\/vip\/user\/status,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/wyydcd.js
+# ✅ 美图秀秀
+美图秀秀 = type=http-response,pattern=^https?:\/\/((h5|api)\.xiuxiu|api-sub|api\.posters)\.meitu\.com\/.+\/(vip|user|h\d|center|home),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/mtxx.js
+# ✅ 百度网盘(倍速)
+百度云盘 = type=http-response,pattern=https:\/\/pan\.baidu\.com\/rest\/2\.0\/membership\/user,requires-body=1,max-size=0,script-path=https://github.com/ddgksf2013/Scripts/raw/master/bdcloud.js
+# ✅ 扫描全能王
+扫描全能王 = type=http-response,pattern=^https?:\/\/.*\.(intsig\.net|camscanner\.com),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/CamScanner.js
+# ✅ 京东比价
+http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig) requires-body=1,script-path= https://raw.githubusercontent.com/zwf234/rules/master/js/jd_price.js
+# ✅ 阿里云盘
+阿里云盘 = type=http-response,pattern=^https?:\/\/(api|member)\.aliyundrive\.com,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/alidrive.js
+# ✅ 轻颜相机
+轻颜相机 = type=http-response,pattern=^https:\/\/commerce-api\.faceu\.mobi\/commerce\/v1\/subscription\/user_info?,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/qyxj.js
+# ✅ Xmind
+Xmind-思维导图 = type=http-response,pattern=^https?:\/\/www\.xmind\.(cn|app)\/.+\/devices,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/Xmind.js
+# ✅ 菜谱大全
+菜谱大全系列 = type=http-response,pattern=^https?:\/\/api.*\.xiangha\.com,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/caipu.js
+# ✅ 傲软抠图，傲软扫描，傲软PDF转换，傲软PDF编辑，傲软投屏
+傲软全家桶 = type=http-response,pattern= ^https?:\/\/.*\.(aoscdn\.com|apsapp\.cn),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/arqjt.js
+# ✅ 大神水印
+大神水印 = type=http-response,pattern=^https?:\/\/dashen-api\.shuiyinyu\.com\/.+\/user\/get_user_info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/dssy.js
+# ✅ 夸克网盘
+夸克 = type=http-response,pattern=^https?:\/\/drive.*\.quark\.cn\/.+\/clouddrive\/(member.+|distribute\/detail.+|capacity\/growth\/info),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/kuake.js
+# ✅ PS
+Ps = type=http-response,pattern=^https?:\/\/lcs-mobile-cops\.adobe\.io\/mobile_profile,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/Ps.js
+# ✅ EMBY
+Emby解锁播放权限 = type=http-request,pattern=^https?:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey),requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/embycrack.js
+
+
+[MITM]
+hostname = %APPEND% spclient.wg.spotify.com, *.kuwo.cn, *.lrts.me, *.wps.cn, restore-access.indream.app, *.cyapi.cn, *.caiyunapp.com,  *.xiuxiu.meitu.com, api.posters.meitu.com, api-*.meitu.com, dict.youdao.com, api.revenuecat.com, pan.baidu.com, *.camscanner.com, *.intsig.net,  api.m.jd.com, *.aliyundrive.com, commerce-api.faceu.mobi, www.xmind.*, *.xiangha.com, *.dicallapp.com, dashen*.shuiyinyu.com, *.aoscdn.com, *.apsapp.cn, drive*.quark.cn, lcs-mobile-cops.adobe.io, mb3admin.com
