@@ -1,0 +1,36 @@
+#!name=自用Panel
+#!desc=节点信息流媒体检测
+
+
+[Panel]
+# ✅网络信息
+NetInfoPanel=title="",content="",style=info,script-name=net-info-panel.js,update-interval=1
+
+# ✅流媒体检测
+Stream-All-Lite = script-name=Stream-All-Lite,update-interval=7200
+
+# ✅Chatgpt可用区域检测
+CFGPT = script-name=CFGPT,update-interval=-1
+
+# ✅DNS
+FlushDNS = script-name=FlushDNS,update-interval=600
+
+[Script]
+# ✅网络信息
+net-info-panel.js=script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Network-Info/Moore/Network-Info.js,type=generic,timeout=30
+
+# ✅流媒体检测
+Stream-All-Lite = type=generic,timeout=30,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/Stream-All.js,script-update-interval=0,argument=title=流媒体解锁检测&icon=play.tv.fill&color=#FF2D55
+
+# ✅Chatgpt可用区域检测
+CFGPT = type=generic,timeout=6,script-path=https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/modules/Panel/CFGPT/CFGPT_2.js,argument=icon=lasso.and.sparkles&iconerr=xmark.seal.fill&icon-color=#336FA9&iconerr-color=#D65C51
+
+# ✅DNS
+FlushDNS = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Flush-DNS/Moore/Flush-DNS.js,argument=title=DNS FLush&icon=cube&color=#afe59a&server=false
+
+
+[Host]
+# ✅网络信息
+ip-api.com = 208.95.112.1
+
+# ✅流媒体检测
