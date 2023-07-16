@@ -7,17 +7,17 @@
 ^https:\/\/ad\.caiyunapp\.com - reject
 # ✅酷我音乐_AdBlock
 # 酷我音乐_AdBlock
-^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+ - reject
+#^https?:\/\/rich\.kuwo\.cn\/AdService\/kaiping\/.+ - reject
 # 酷我音乐_AdBlock
-^https?:\/\/.+\.kwcdn\.kuwo\.cn\/star\/upload\/.+ - reject
+#^https?:\/\/.+\.kwcdn\.kuwo\.cn\/star\/upload\/.+ - reject
 # 酷我音乐_AdBlock
-^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/Ad - reject
+#^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/Ad - reject
 # 酷我听书_Blockad
-https?:\/\/audiobookpay\.kuwo\.cn/a\.p\?op=get_advertright - reject-dict
+#https?:\/\/audiobookpay\.kuwo\.cn/a\.p\?op=get_advertright - reject-dict
 # 酷我听书_Blockad
-https?:\/\/omp-audiobookpay\.lrts\.me\/a\.p\?op=get_advertright - reject-dict
+#https?:\/\/omp-audiobookpay\.lrts\.me\/a\.p\?op=get_advertright - reject-dict
 # 酷我音乐_添加已购音乐
-^https?:\/\/.*\.kuwo\.cn\/music\.pay\?uid\=\d+ http://musicpay.kuwo.cn/music.pay?uid=2 302
+#^https?:\/\/.*\.kuwo\.cn\/music\.pay\?uid\=\d+ http://musicpay.kuwo.cn/music.pay?uid=2 302
 
 
 [Script]
