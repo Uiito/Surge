@@ -1,5 +1,5 @@
 #!name = 功能模块
-#!desc = 仓库BoxJS资源转换TF解锁
+#!desc = BoxJS资源转换TF解锁等
 
 
 [General]
@@ -18,15 +18,13 @@ skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com
 
 
 [Rule]
-
 # ✅Sub-Store
 DOMAIN-SUFFIX, vercel.app, PROXY
-
 
 # ✅TF账户管理
 
 [URL Rewrite]
-
+# ✅Tiktok解锁
 (?<=_region=)CN(?=&) JP 307
 (?<=&mcc_mnc=)4 2 307
 ^(https?:\/\/(tnc|dm)[\w-]+\.\w+\.com\/.+)(\?)(.+) $1$3 302
@@ -38,7 +36,6 @@ DOMAIN-SUFFIX, vercel.app, PROXY
 
 # ✅Sub-Store
 Sub-Store = type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store.min.js,requires-body=true,timeout=120,max-size=131072
-
 Sub-Store Sync = type=cron,cronexp=0 0 * * *,wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js
 
 # ✅BoxJs
@@ -49,15 +46,10 @@ TestFlight账户管理 = type=http-request,pattern=^https:\/\/testflight\.apple\
 
 # ✅Script Hub
 Script Hub: 前端 = type=http-request,pattern=^https?:\/\/script\.hub\/($|edit\/|reload), requires-body=0, max-size=0,script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/script-hub.js, timeout=120
-
 Script Hub: QX 转换 Surge = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/.+type=qx-rewrite, requires-body=0, max-size=0, script-path=https://github.com/Script-Hub-Org/Script-Hub/raw/main/QX-Rewrite-Parser.js, timeout=120
-
 Script Hub: Loon 转换 Surge = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/.+type=loon-plugin, requires-body=0, max-size=0, script-path=https://github.com/Script-Hub-Org/Script-Hub/raw/main/Loon-Rewrite-Parser.js, timeout=120
-
 Script Hub: Surge 模块控制器 = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/.+type=surge-module, requires-body=0, max-size=0, script-path=https://github.com/Script-Hub-Org/Script-Hub/raw/main/Surge-Rewrite-Parser.js, timeout=120
-
 Script Hub: 规则集转换 = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/.+type=rule-set, requires-body=0, max-size=0, script-path=https://github.com/Script-Hub-Org/Script-Hub/raw/main/rule-parser.js, timeout=120
-
 Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/convert\/, requires-body=0, max-size=0, script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/script-converter.js, timeout=120
 
 # ✅微信链接限制解除
