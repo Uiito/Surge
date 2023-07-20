@@ -196,10 +196,9 @@ class httpMethod {
 	  $done({
 		title: getSSID() ?? getCellularInfo(),
 		content:
-		  #`[IP 地址]\n` +
+		  `[IP 地址]\n` +
 		  getIP() +
 		  `IP信息：${info.query}\n` +
-		  #`节点ISP：${info.isp}\n` +
 		  `所在地：${getFlagEmoji(info.countryCode)}${info.country} - ${info.city}`,
 		icon: getSSID() ? 'wifi' : 'simcard',
 		'icon-color': getSSID() ? '#005CAF' : '#F9BF45',
