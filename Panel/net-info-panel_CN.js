@@ -197,6 +197,7 @@ class httpMethod {
 		title: getSSID() ?? getCellularInfo(),
 		content:
 		  `[IP 地址]\n` +
+		  `ISP：${info.isp}\n` +
 		  getIP() +
 		  `IP信息：${info.query}\n` +
 		  `所在地：${getFlagEmoji(info.countryCode)}${info.country} - ${info.city}`,
