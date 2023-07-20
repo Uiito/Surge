@@ -1,5 +1,5 @@
-#!name=应用软件Vip
-#!desc=主用软件Vip破解
+#!name=软件Vip
+#!desc=自用软件Vip破解
 
 
 [URL Rewrite]
@@ -47,7 +47,7 @@ http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(wareBusin
 # ✅ 阿里云盘
 阿里云盘 = type=http-response,pattern=^https?:\/\/(api|member)\.aliyundrive\.com,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/alidrive.js
 # ✅ 轻颜相机
-#轻颜相机 = type=http-response,pattern=^https:\/\/commerce-api\.faceu\.mobi\/commerce\/v1\/subscription\/user_info?,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/qyxj.js
+qyxj_14 = type=http-response, pattern=^https:\/\/commerce-api\.faceu\.mobi\/commerce\/v1\/subscription\/user_info?, requires-body=true, max-size=3145728, script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/qyxj.js/_end_/qyxj.js?type=qx-script&target=surge-script, timeout=60, script-update-interval=0
 # ✅ Xmind
 Xmind-思维导图 = type=http-response,pattern=^https?:\/\/www\.xmind\.(cn|app)\/.+\/devices,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/Xmind.js
 # ✅ 菜谱大全
@@ -64,6 +64,10 @@ Ps = type=http-response,pattern=^https?:\/\/lcs-mobile-cops\.adobe\.io\/mobile_p
 Emby解锁播放权限 = type=http-request,pattern=^https?:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey),requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/embycrack.js
 # ✅ YouTube翻译
 YouTube-Translate = type=http-response,pattern=^https:\/\/www\.youtube\.com\/api\/timedtext,requires-body=1,max-size=0,timeout=20,script-path=https://raw.githubusercontent.com/Keywos/rule/main/JS/surgeYouTubeFY.js
+# ✅ ChatAI
+chatai_8 = type=http-response, pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/?(.*?)*$), requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/Uiito/Surge/master/Script/ChatAI.js, timeout=60, script-update-interval=0
+chatai_9 = type=http-request, pattern=^https?:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/?(.*?)*$), script-path=https://raw.githubusercontent.com/Uiito/Surge/master/Script/ChatAI.js, timeout=60, script-update-interval=0
+
 
 [MITM]
-hostname = %APPEND% spclient.wg.spotify.com, *.kuwo.cn, *.lrts.me, *.wps.cn, restore-access.indream.app, *.cyapi.cn, *.caiyunapp.com,  *.xiuxiu.meitu.com, api.posters.meitu.com, api-*.meitu.com, dict.youdao.com, api.revenuecat.com, pan.baidu.com, *.camscanner.com, *.intsig.net,  api.m.jd.com, *.aliyundrive.com, commerce-api.faceu.mobi, www.xmind.*, *.xiangha.com, *.dicallapp.com, dashen*.shuiyinyu.com, *.aoscdn.com, *.apsapp.cn, drive*.quark.cn, lcs-mobile-cops.adobe.io, mb3admin.com, www.youtube.com,  
+hostname = %APPEND% spclient.wg.spotify.com, *.kuwo.cn, *.lrts.me, *.wps.cn, restore-access.indream.app, *.cyapi.cn, *.caiyunapp.com,  *.xiuxiu.meitu.com, api.posters.meitu.com, api-*.meitu.com, dict.youdao.com, api.revenuecat.com, pan.baidu.com, *.camscanner.com, *.intsig.net,  api.m.jd.com, *.aliyundrive.com, commerce-api.faceu.mobi, www.xmind.*, *.xiangha.com, *.dicallapp.com, dashen*.shuiyinyu.com, *.aoscdn.com, *.apsapp.cn, drive*.quark.cn, lcs-mobile-cops.adobe.io, mb3admin.com, www.youtube.com,    
