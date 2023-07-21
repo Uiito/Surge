@@ -19,7 +19,7 @@ skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com
 
 [Rule]
 # ✅Sub-Store
-DOMAIN-SUFFIX, vercel.app, PROXY
+DOMAIN-SUFFIX, vercel.app, Proxy
 
 # ✅TF账户管理
 
