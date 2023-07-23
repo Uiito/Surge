@@ -15,14 +15,6 @@ force-http-engine-hosts = %APPEND% script.hub, *.script.hub
 # ✅跳过部分应用代理检测
 skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com,www.abchina.com.cn,www.shanbay.com,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com
 
-
-
-[Rule]
-# ✅Sub-Store
-DOMAIN-SUFFIX, vercel.app, Proxy
-
-# ✅TF账户管理
-
 [URL Rewrite]
 # ✅Tiktok解锁
 (?<=_region=)CN(?=&) JP 307
@@ -31,6 +23,7 @@ DOMAIN-SUFFIX, vercel.app, Proxy
 (^https?:\/\/*\.\w{4}okv.com\/.+&.+)(\d{2}\.3\.\d)(.+) $118.0$3 302
 
 [Map Local]
+# ✅Sub-Store
 # PNG ICO SVG
 ^https?:\/\/sub-store\.vercel\.app\/144x144\.png data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/sub/144x144.png" header="Content-Type: image/png"
 ^https?:\/\/sub-store\.vercel\.app\/[^14]\d{1,2}x\d{1,3}\.png data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/sub/144x144.png" header="Content-Type: image/png"
@@ -60,10 +53,8 @@ DOMAIN-SUFFIX, vercel.app, Proxy
 [Script]
 
 # ✅Sub-Store
-# 主程序
-Sub-Store Cache= type=http-request,pattern=^https?:\/\/sub\.store,requires-body=true,timeout=120,max-size=131072,ability=http-client-policy,script-update-interval=-1,script-path=https://raw.githubusercontent.com/Keywos/rule/main/Sub-Store/sub-store.min-nolog.js
-# 定时任务
-Sub-Store Sync=type=cron,cronexp=0 0 * * *,wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/Keywos/rule/main/Sub-Store/cron-sync-artifacts.min.js
+Sub-Store=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store.min.js,requires-body=true
+Sub-Store Sync=type=cron,cronexp=0 0 * * *,wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js
 
 # ✅BoxJs
 Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
