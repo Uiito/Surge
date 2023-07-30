@@ -7,7 +7,7 @@
 force-http-engine-hosts = %APPEND% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net
 
 # ✅TF账户管理
-skip-proxy = %APPEND% iosapps.itunes.apple.com
+#skip-proxy = %APPEND% iosapps.itunes.apple.com
 
 # ✅Script Hub
 force-http-engine-hosts = %APPEND% script.hub, *.script.hub
@@ -60,7 +60,7 @@ Sub-Store Sync=type=cron,cronexp=0 0 * * *,wake-system=1,timeout=120,script-path
 Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(.+\.)?boxjs\.(com|net),script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.js, requires-body=true, timeout=120
 
 # ✅TF区域限制解除
-TestFlight账户管理 = type=http-request,pattern=^https:\/\/testflight\.apple\.com\/v\d\/(app|account|invite)s\/,requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/TestFlight/TestFlightAccount.js
+#TestFlight账户管理 = type=http-request,pattern=^https:\/\/testflight\.apple\.com\/v\d\/(app|account|invite)s\/,requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/TestFlight/TestFlightAccount.js
 
 # ✅Script Hub
 Script Hub: 前端 = type=http-request,pattern=^https?:\/\/script\.hub\/($|edit\/|reload), requires-body=0, max-size=0,script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/script-hub.js, timeout=120
@@ -82,4 +82,4 @@ Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/c
 预览qx一键资源 = type=http-request,pattern=^https:\/\/quantumult\.app\/x\/open-app\/add-resource\?remote-resource=,requires-body=0,script-path=https://github.com/chengkongyiban/shadowrocket/raw/main/scripts/qx-resource-preview.js
 
 [MITM]
-hostname = %INSERT% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, sub.store, sub-store.vercel.app, testflight.apple.com, script.hub, *.script.hub, security.wechat.com, weixin110.qq.com, *.tiktokv.com, *.byteoversea.com, *.tik-tokapi.com, quantumult.app, 
+hostname = %INSERT% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, sub.store, sub-store.vercel.app, script.hub, *.script.hub, security.wechat.com, weixin110.qq.com, *.tiktokv.com, *.byteoversea.com, *.tik-tokapi.com, quantumult.app, 
