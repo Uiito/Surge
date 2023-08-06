@@ -3,7 +3,7 @@
 
 
 [URL Rewrite]
-# ✅彩云天气广告
+# ✅彩云天气广告0
 ^https:\/\/ad\.caiyunapp\.com - reject
 # ✅酷我音乐_AdBlock
 # 酷我音乐_AdBlock
