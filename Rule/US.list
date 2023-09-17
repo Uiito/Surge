@@ -1,0 +1,51 @@
+# ✅  Google
+DOMAIN-SUFFIX,gmail.com
+DOMAIN-KEYWORD,google
+DOMAIN-KEYWORD,.blogspot.
+DOMAIN-SUFFIX,goog
+DOMAIN,lens.l.google.com
+
+# ✅  Google Drive
+PROCESS-NAME,Backup and Sync
+USER-AGENT,%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98*
+USER-AGENT,Google.Drive*
+USER-AGENT,*com.google.Drive*
+DOMAIN-SUFFIX,docs.google.com
+DOMAIN-SUFFIX,drive.google.com
+DOMAIN-SUFFIX,googledrive.com
+DOMAIN-SUFFIX,googleusercontent.com
+DOMAIN,www.googleapis.com
+
+# ✅  Microsoft
+DOMAIN-SUFFIX,bing.com
+DOMAIN-SUFFIX,linkedin.com
+DOMAIN-SUFFIX,licdn.com
+DOMAIN-SUFFIX,msn.com
+DOMAIN-SUFFIX,skype.com
+DOMAIN-SUFFIX,onedrive.live.com
+DOMAIN-SUFFIX,microsoft.com
+
+# ✅  AI
+DOMAIN, cdn.auth0.com
+DOMAIN, o33249.ingest.sentry.io
+DOMAIN-SUFFIX, ai.com
+DOMAIN-SUFFIX, challenges.cloudflare.com
+DOMAIN-SUFFIX, identrust.com
+DOMAIN-SUFFIX, stripe.com
+DOMAIN-SUFFIX, poe.com
+DOMAIN-SUFFIX, intercom.io
+DOMAIN-SUFFIX, featuregates.org
+DOMAIN-SUFFIX, events.statsigapi.net
+DOMAIN-SUFFIX, intercomcdn.com
+DOMAIN-SUFFIX, openai.com
+DOMAIN-SUFFIX, chat.openai.com.cdn.cloudflare.net
+DOMAIN-SUFFIX, openaiapi-site.azureedge.net
+DOMAIN-SUFFIX, openaicom.imgix.net
+DOMAIN-SUFFIX, openaicomproductionae4b.blob.core.windows.net
+DOMAIN-SUFFIX, openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
+
+# ✅  PayPal
+DOMAIN-SUFFIX,paypal.com
+DOMAIN-SUFFIX,paypal.me
+DOMAIN-SUFFIX,paypal-mktg.com
+DOMAIN-SUFFIX,paypalobjects.com
