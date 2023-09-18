@@ -56,7 +56,7 @@ skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com
 # ✅Sub-Store
 # 主程序 如果不需要使用指定节点功能 例如[加国旗脚本或者cname脚本] 可以去掉 Sub-Core 的参数 [,ability=http-client-policy] 就不会爆内存，这个参数在 Surge 非常占用内存
 Sub-Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/Keywos/rule/main/Sub-Store/sub-store-1.min.js,requires-body=true,timeout=120
-Sub-Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/Keywos/rule/main/Sub-Store/sub-store-0.min.js,requires-body=true,ability=http-client-policy
+Sub-Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/Keywos/rule/main/Sub-Store/sub-store-0.min.js,requires-body=true
 
 # 定时任务
 Sub-Store Sync=type=cron,cronexp=0 0 * * *,wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/Keywos/rule/main/Sub-Store/cron-sync-artifacts.min.js
@@ -87,4 +87,4 @@ Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/c
 预览qx一键资源 = type=http-request,pattern=^https:\/\/quantumult\.app\/x\/open-app\/add-resource\?remote-resource=,requires-body=0,script-path=https://github.com/chengkongyiban/shadowrocket/raw/main/scripts/qx-resource-preview.js
 
 [MITM]
-hostname = %INSERT% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, sub.store, sub-store.vercel.app, script.hub, *.script.hub, security.wechat.com, weixin110.qq.com, *.tiktokv.com, *.byteoversea.com, *.tik-tokapi.com, quantumult.app, 
+hostname = %INSERT% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net, testflight.apple.com, sub.store, sub-store.vercel.app, script.hub, *.script.hub, security.wechat.com, weixin110.qq.com, *.tiktokv.com, *.byteoversea.com, *.tik-tokapi.com, quantumult.app, 
