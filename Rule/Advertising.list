@@ -3,9 +3,9 @@
 DOMAIN-KEYWORD,adservice
 
 # ✅ 好孩子
-DOMAIN-SUFFIX,go.live.missav.com, reject
-DOMAIN-SUFFIX,stripcdn.com, reject
-DOMAIN-SUFFIX,stripchat.com, reject
+DOMAIN-SUFFIX,go.live.missav.com
+DOMAIN-SUFFIX,stripcdn.com
+DOMAIN-SUFFIX,stripchat.com
 
 # (0~9)
 # > 51wnl
