@@ -33,7 +33,7 @@ Nicegram会员 = type=http-request,pattern=^https?:\/\/restore-access\.indream\.
 # ✅ 彩云天气
 彩云天气 = type=http-response,pattern=^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/caiyun.js
 # ✅ Picsew
-Picsew = type=http-response,pattern=^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/Picsew.js
+#Picsew = type=http-response,pattern=^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/Picsew.js
 # ✅ 有道词典
 有道词典 = type=http-response,pattern=^https:\/\/dict\.youdao\.com\/vip\/user\/status,script-path=https://raw.githubusercontent.com/Uiito/QX/master/Script/wyydcd.js
 # ✅ 美图秀秀
@@ -65,7 +65,7 @@ EmbyPro = type=http-response,pattern=^https?:\/\/mb3admin.com\/admin\/service\/r
 # ✅ YouTube翻译
 #YouTube-Translate = type=http-response,pattern=^https:\/\/www\.youtube\.com\/api\/timedtext,requires-body=1,max-size=0,timeout=20,script-path=https://raw.githubusercontent.com/Keywos/rule/main/JS/surgeYouTubeFY.js
 # ✅ APTV
-APTV= type=http-response, pattern=^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$), requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/Yu9191/Rewrite/main/aptv.js, timeout=60, script-update-interval=0
+#APTV= type=http-response, pattern=^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$), requires-body=true, max-size=3145728, script-path=https://raw.githubusercontent.com/Yu9191/Rewrite/main/aptv.js, timeout=60, script-update-interval=0
 
 [MITM]
-hostname = %APPEND% spclient.wg.spotify.com, *.kuwo.cn, *.lrts.me, *.wps.cn, restore-access.indream.app, *.cyapi.cn, *.caiyunapp.com,  *.xiuxiu.meitu.com, api.posters.meitu.com, api-*.meitu.com, dict.youdao.com, api.revenuecat.com, pan.baidu.com, *.camscanner.com, *.intsig.net,  api.m.jd.com, *.aliyundrive.com, commerce-api.faceu.mobi, www.xmind.*, *.xiangha.com, *.dicallapp.com, dashen*.shuiyinyu.com, *.aoscdn.com, *.apsapp.cn, drive*.quark.cn, lcs-mobile-cops.adobe.io, mb3admin.com,    
+hostname = %APPEND% spclient.wg.spotify.com, *.kuwo.cn, *.lrts.me, *.wps.cn, restore-access.indream.app, *.cyapi.cn, *.caiyunapp.com,  *.xiuxiu.meitu.com, api.posters.meitu.com, api-*.meitu.com, dict.youdao.com, pan.baidu.com, *.camscanner.com, *.intsig.net,  api.m.jd.com, *.aliyundrive.com, commerce-api.faceu.mobi, www.xmind.*, *.xiangha.com, *.dicallapp.com, dashen*.shuiyinyu.com, *.aoscdn.com, *.apsapp.cn, drive*.quark.cn, lcs-mobile-cops.adobe.io, mb3admin.com,    
